@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Super Websites v2</title>
+<link rel="icon" href="assets/logo-v1.2.1.webp" type="image/webp">
+<meta name="description" content="Super Websites. A website we build once and hand to you, hosted free in your name.">
+<meta property="og:title" content="Super Websites | Super sites. No subscriptions.">
+<meta property="og:description" content="A website we build once and hand to you. Hosted free in your name. Pay only when you change something.">
+<meta property="og:image" content="assets/SW-heroine-v4.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;1,700;1,800&family=Barlow:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  color-scheme: light;
+  --plum:#24123a;
+  --plum-2:#3a2058;
+  --purple:#7b3fe4;
+  --purple-ink:#6a2fd6;
+  --yellow:#ffd23a;
+  --lilac:#f4eefe;
+  --lilac-2:#e6dafc;
+  --white:#ffffff;
+  --muted:#5b4d70;
+  --line:#24123a;
+  --display:"Barlow Condensed","Arial Narrow","Helvetica Neue",Arial,sans-serif;
+  --sans:"Barlow","Helvetica Neue",Arial,sans-serif;
+  --shadow:6px 6px 0 var(--plum);
+  --gutter:clamp(16px,4vw,40px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scrollbar-gutter:stable}
+body{margin:0;background:var(--lilac);color:var(--plum);font:400 17px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--purple);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:var(--gutter)}
+.display{font-family:var(--display);font-weight:800;font-style:italic;text-transform:uppercase;line-height:.9;letter-spacing:-.005em;margin:0;text-wrap:balance}
+.eyebrow{font:700 13px/1.2 var(--sans);letter-spacing:.14em;text-transform:uppercase;margin:0 0 14px;display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:14px;height:14px;background:var(--yellow);border:2px solid var(--plum);transform:skewX(-12deg)}
+.lede{font-size:clamp(18px,1.6vw,21px);max-width:34em;margin:18px 0 0}
+.fine{font-size:13px;line-height:1.55;color:var(--muted);max-width:62em}
+.halftone{background-color:var(--lilac-2);background-image:radial-gradient(var(--white) 1.6px,transparent 1.7px);background-size:11px 11px}
+
+/* buttons */
+.btn{appearance:none;display:inline-flex;align-items:center;gap:12px;font:800 italic 19px/1 var(--display);text-transform:uppercase;letter-spacing:.02em;padding:15px 22px;border:3px solid var(--plum);background:var(--yellow);color:var(--plum);box-shadow:4px 4px 0 var(--plum);cursor:pointer;text-decoration:none;transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--plum)}
+.btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--plum)}
+.btn.yellow{background:var(--yellow);color:var(--plum)}
+.btn svg{width:16px;height:16px}
+.textlink{font-weight:700;text-decoration:none;border-bottom:3px solid var(--yellow);padding-bottom:2px}
+
+/* preview ribbon */
+.ribbon{background:var(--plum);color:var(--white);font-size:13px;padding-block:8px}
+.ribbon .wrap{display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.ribbon b{color:var(--yellow);font-weight:700}
+.ribbon a{color:var(--yellow);font-weight:600}
+
+/* header */
+.header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--lilac);border-bottom:3px solid var(--plum)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:10px}
+.nav-links{display:flex;align-items:center;gap:26px;font-weight:600;font-size:15px}
+.nav-links a{text-decoration:none}
+.nav-links a:not(.btn):hover{text-decoration:underline;text-decoration-color:var(--purple);text-decoration-thickness:3px;text-underline-offset:5px}
+.nav .btn{font-size:16px;padding:11px 16px}
+.logo{display:block;height:62px;width:auto}
+@media (max-width:820px){.nav-links a:not(.btn){display:none}.logo{height:46px}}
+
+/* logo colourways (custom properties flow into the <use> shadow tree) */
+.logo{--so:var(--purple);--si:var(--yellow);--sl:var(--white);--sk:var(--plum);--wt:var(--purple);--wb:var(--yellow);--wk:var(--plum);--sw:3px}
+.logo.on-dark{--so:var(--purple);--si:var(--yellow);--sl:var(--white);--sk:var(--plum);--wt:var(--white);--wb:var(--yellow);--wk:transparent}
+.logo.mono{--ring:1;--so:currentColor;--si:transparent;--sl:var(--knock);--sk:transparent;--wt:currentColor;--wb:currentColor;--wk:transparent;--sw:0px}
+
+/* hero */
+.hero{padding-block:clamp(36px,6vw,72px) clamp(40px,6vw,80px)}
+.hero-grid{display:grid;grid-template-columns:1.02fr 1fr;gap:clamp(28px,5vw,64px);align-items:center}
+.hero-copy{container-type:inline-size;min-width:0}
+.hero h1{font-size:clamp(54px,16cqi,118px)}
+.hero h1 .hl{font-size:.7em;white-space:nowrap}
+.hero h1 .hl{background:var(--purple);color:var(--white);padding:.07em .2em .05em;box-decoration-break:clone;-webkit-box-decoration-break:clone;display:inline-block;margin-top:.06em;transform:rotate(-1.2deg)}
+.hero-actions{display:flex;gap:22px;align-items:center;flex-wrap:wrap;margin-top:30px}
+.promises{display:flex;flex-wrap:wrap;gap:10px;margin:30px 0 0;padding:0;list-style:none}
+.promises li{display:flex;align-items:center;gap:8px;background:var(--white);border:2px solid var(--plum);padding:7px 12px;font-weight:600;font-size:15px}
+.promises svg{width:16px;height:16px;color:var(--purple)}
+.panel{position:relative;border:3px solid var(--plum);box-shadow:var(--shadow)}
+.hero-panel{display:flex;flex-direction:column;overflow:hidden;background:var(--white)}
+.hero-panel .art{position:relative;aspect-ratio:1/1.02;overflow:hidden;isolation:isolate}
+.hero-panel .halftone-bg{position:absolute;inset:0;overflow:hidden;background:var(--lilac-2)}
+.hero-panel .halftone-bg::after{content:"";position:absolute;inset:-40%;background:repeating-conic-gradient(from 0deg at 50% 38%,rgba(255,255,255,.6) 0 6deg,transparent 6deg 18deg)}
+.heroine{position:absolute;left:0;top:4%;width:100%;height:96%;max-width:none;object-fit:contain;object-position:center bottom;mix-blend-mode:multiply}
+.bubble{position:absolute;left:14px;top:14px;background:var(--plum);color:var(--white);font:800 italic 15px/1 var(--display);letter-spacing:.04em;text-transform:uppercase;padding:9px 12px;z-index:2}
+.bubble::after{content:"";position:absolute;left:18px;bottom:-9px;border:9px solid transparent;border-top-color:var(--plum);border-bottom:0}
+.hero-panel .bubble{max-width:200px;line-height:1.1}
+.own-tag{border-top:3px solid var(--plum);background:var(--yellow);padding:12px 16px;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px}
+.own-tag strong{display:block;font:800 italic 26px/.95 var(--display);text-transform:uppercase}
+.own-tag span{font-size:14px;font-weight:600}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}.hero-panel{margin-right:6px;max-width:520px}}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}html{scroll-behavior:auto}}
+/* opening: the chain breaks (same structure as the CamerAcademy title sequence) */
+#intro{position:fixed;inset:0;z-index:200;overflow:hidden;cursor:pointer}
+#intro .half{position:absolute;top:0;bottom:0;width:50.5%;background:var(--plum);animation:.75s 1.32s cubic-bezier(.7,0,.3,1) forwards}
+#intro .half.l{left:0;animation-name:pullL}
+#intro .half.r{right:0;animation-name:pullR}
+@keyframes pullL{to{transform:translateX(-102%)}}
+@keyframes pullR{to{transform:translateX(102%)}}
+#intro .chain{position:absolute;top:calc(50% + 64px);height:87px;width:100%;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='48' viewBox='0 0 88 48'%3E%3Crect x='8' y='8' width='48' height='32' rx='16' fill='none' stroke='%2324123a' stroke-width='13'/%3E%3Crect x='8' y='8' width='48' height='32' rx='16' fill='none' stroke='%23ffd23a' stroke-width='7'/%3E%3Crect x='50' y='19' width='46' height='10' rx='5' fill='%23ffd23a' stroke='%2324123a' stroke-width='3'/%3E%3Crect x='-38' y='19' width='46' height='10' rx='5' fill='%23ffd23a' stroke='%2324123a' stroke-width='3'/%3E%3C/svg%3E") repeat-x;background-size:160px 87px;animation:strain .5s .7s ease-in-out}
+#intro .half.l .chain{right:0;background-position:right center;--dir:-1}
+#intro .half.r .chain{left:0;background-position:left center;--dir:1}
+@keyframes strain{0%,100%{transform:none}20%{transform:translateX(calc(var(--dir) * 3px)) translateY(-1px)}40%{transform:translateX(calc(var(--dir) * -2px)) translateY(1px)}60%{transform:translateX(calc(var(--dir) * 4px)) translateY(-1px)}80%{transform:translateX(calc(var(--dir) * -3px))}}
+#intro .half.l .chain::after,#intro .half.r .chain::after{content:"";position:absolute;top:50%;width:18px;height:28px;margin-top:-14px;background:var(--plum);opacity:0;animation:crack .01s 1.2s forwards}
+#intro .half.l .chain::after{right:0}
+#intro .half.r .chain::after{left:0}
+@keyframes crack{to{opacity:1}}
+#intro .mark{position:absolute;left:50%;top:50%;transform:translate(-50%,calc(-50% - 40px));display:flex;flex-direction:column;align-items:center;gap:14px;z-index:2;animation:markOut .3s 1.18s ease-in forwards}
+#intro .mark .logo{height:auto;width:min(70vw,360px);opacity:0;transform:scale(.92);animation:markIn .5s .15s cubic-bezier(.2,.8,.2,1) forwards}
+#intro .kicker{font:800 italic 18px/1 var(--display);letter-spacing:.16em;text-transform:uppercase;color:var(--yellow);opacity:0;animation:kickIn .45s .5s forwards}
+@keyframes markIn{to{opacity:1;transform:scale(1)}}
+@keyframes kickIn{to{opacity:1}}
+@keyframes markOut{to{opacity:0;transform:translate(-50%,calc(-50% - 70px)) scale(.96)}}
+#intro .burst{position:absolute;left:50%;top:calc(50% + 107px);width:170px;height:170px;margin:-85px 0 0 -85px;z-index:3;opacity:0;transform:scale(.2) rotate(-20deg);animation:burst .55s 1.18s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes burst{30%{opacity:1;transform:scale(1.15) rotate(0)}100%{opacity:0;transform:scale(1.7) rotate(12deg)}}
+#intro .skip{position:absolute;bottom:22px;right:22px;z-index:4;background:none;border:0;color:#cfc2e6;font:700 13px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;opacity:.75}
+#intro .skip:hover{opacity:1}
+#intro.done{opacity:0;pointer-events:none;transition:opacity .25s}
+body.intro-lock{overflow:hidden}
+@media (prefers-reduced-motion:reduce){#intro{display:none}body.intro-lock{overflow:auto}}
+
+
+
+/* sections */
+.section{padding-block:clamp(56px,8vw,104px)}
+.section-head{max-width:760px;margin-bottom:clamp(28px,4vw,44px)}
+.section-head h2{font-size:clamp(46px,6.4vw,88px)}
+.section-head h2 em{font-style:inherit;color:var(--purple)}
+.dark{background:var(--plum);color:var(--white)}
+.dark .eyebrow::before{border-color:var(--white)}
+.dark .section-head h2 em{color:var(--yellow)}
+.dark .fine{color:#cfc2e6}
+
+/* trap section */
+.trap-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);gap:clamp(22px,3vw,36px);align-items:stretch}
+.break-panel{background:var(--yellow);container-type:inline-size;display:flex;align-items:center;padding:clamp(22px,4cqi,40px)}
+.break-panel p{margin:0;font:800 italic clamp(40px,19cqi,124px)/.86 var(--display);text-transform:uppercase;letter-spacing:-.01em;color:var(--plum)}
+.break-panel p span{display:block}
+.break-panel p .accent{color:var(--purple-ink)}
+.cost-card{background:var(--white);padding:clamp(18px,2.4vw,28px)}
+.cost-card h3{font:800 italic 30px/.95 var(--display);text-transform:uppercase;margin:0}
+.cost-card .sub{margin:8px 0 0;color:var(--muted);font-size:15px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:18px 0 6px;font-size:14px;font-weight:600}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend i{width:14px;height:14px;border:2px solid var(--plum);display:inline-block}
+.chart{width:100%;height:auto;display:block}
+.chart text{font-family:var(--sans);fill:var(--plum)}
+.totals{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin-top:14px}
+.total{border:3px solid var(--plum);padding:12px 14px}
+.total small{display:block;font-size:13px;font-weight:600;color:var(--muted)}
+.total b{display:block;font:800 italic clamp(28px,8vw,42px)/1 var(--display);margin-top:4px;font-variant-numeric:tabular-nums}
+.total.them{background:var(--plum);color:var(--white)}
+.total.them small{color:#cfc2e6}
+.total.us{background:var(--yellow)}
+.trap-foot{margin-top:24px}
+@media (max-width:900px){.trap-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* ownership */
+.own-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,5vw,64px);align-items:center}
+.own-grid .section-head{margin-bottom:28px}
+.keylist{list-style:none;margin:0;padding:0;display:grid;gap:14px;max-width:520px}
+.keylist li{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:baseline;border-top:2px solid rgba(255,255,255,.2);padding-top:14px}
+.keylist b{font:800 italic 22px/1 var(--display);text-transform:uppercase;color:var(--yellow)}
+.keylist span{font-size:18px;color:#efe8fb}
+.own-grid .fine{margin-top:22px}
+.keystone-panel{background:var(--lilac-2);overflow:hidden;display:flex;flex-direction:column;border-color:var(--white);box-shadow:8px 8px 0 var(--purple);max-width:440px;justify-self:end;width:100%}
+.keystone-panel .art{position:relative;aspect-ratio:1/1.1;isolation:isolate;background:var(--lilac-2)}
+.keystone-panel img{position:absolute;inset:3% 0 0;width:100%;height:97%;object-fit:contain;object-position:center bottom;mix-blend-mode:multiply}
+.keystone-panel .cap{border-top:3px solid var(--plum);background:var(--yellow);color:var(--plum);padding:10px 14px;display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.keystone-panel .cap strong{font:800 italic 24px/1 var(--display);text-transform:uppercase}
+.keystone-panel .cap span{font-size:14px;font-weight:600}
+@media (max-width:860px){.own-grid{grid-template-columns:1fr}.keystone-panel{justify-self:start;max-width:380px}.keylist li{grid-template-columns:1fr;gap:4px}}
+
+/* pricing */
+.prices{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.12fr) minmax(0,.8fr);gap:22px;align-items:start}
+.price .plus{margin:16px 0 0;font-weight:700}
+.price:not(.main) .includes svg{color:var(--purple)}
+.price{background:var(--white);padding:24px}
+.price h3{font:800 italic 32px/.95 var(--display);text-transform:uppercase;margin:0}
+.price .tag{font:700 13px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.amount{font:800 italic clamp(64px,7vw,92px)/.9 var(--display);margin:16px 0 4px;font-variant-numeric:tabular-nums}
+.amount sup{font-size:.32em;vertical-align:top;position:relative;top:.35em;margin-right:4px}
+.amount small{font-size:.24em;margin-left:6px;font-style:normal;font-family:var(--sans);font-weight:700}
+.price.main{background:var(--purple);color:var(--white)}
+.price.main .tag{color:var(--yellow)}
+.price.main .amount{color:var(--yellow);-webkit-text-stroke:0}
+.includes{list-style:none;margin:18px 0 22px;padding:0;display:grid;gap:9px}
+.includes li{display:flex;gap:10px;align-items:flex-start}
+.includes svg{width:18px;height:18px;flex:none;margin-top:3px;color:var(--yellow)}
+.price p{margin:8px 0 0}
+.quoted{font:800 italic 58px/.9 var(--display);color:var(--purple);text-transform:uppercase;margin:16px 0 4px}
+@media (max-width:980px){.prices{grid-template-columns:1fr}}
+
+/* work */
+.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.site{background:var(--white);display:flex;flex-direction:column;text-decoration:none}
+.chrome{display:flex;align-items:center;gap:6px;border-bottom:3px solid var(--plum);padding:8px 10px;font-size:12px;font-weight:600;background:var(--lilac)}
+.chrome i{width:10px;height:10px;border:2px solid var(--plum);border-radius:50%}
+.chrome span{margin-left:8px;color:var(--muted)}
+.site img{aspect-ratio:644/475;object-fit:cover;width:100%}
+.site .meta{padding:14px 16px 18px;border-top:3px solid var(--plum)}
+.site h3{font:800 italic 26px/1 var(--display);text-transform:uppercase;margin:0}
+.site p{margin:6px 0 0;font-size:15px;color:var(--muted)}
+.site:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--plum)}
+.site.placeholder{border-style:dashed;box-shadow:none;background:transparent;align-items:center;justify-content:center;text-align:center;padding:30px;min-height:260px}
+.site.placeholder:hover{transform:none;box-shadow:none}
+@media (max-width:900px){.work-grid{grid-template-columns:1fr}}
+
+/* steps */
+.chapters-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.byline{display:flex;align-items:center;gap:12px;font-size:15px}
+.byline .mono-badge{width:48px;height:48px;display:grid;place-items:center;background:var(--yellow);border:3px solid var(--plum);font:800 italic 18px/1 var(--display)}
+.byline strong{display:block}
+.path{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin:8px 0 0;padding:0 78px 0 0;list-style:none}
+.path::before{content:"";position:absolute;left:34px;right:50px;top:31px;height:12px;background:var(--yellow);border-block:3px solid var(--plum)}
+.path .key-end{position:absolute;right:-4px;top:3px;width:74px;height:70px;color:var(--plum)}
+.path li{position:relative}
+.path .badge{position:relative;display:block;width:68px;height:76px}
+.path .badge text{font:800 italic 44px var(--display);fill:var(--white)}
+.path .when{display:inline-block;margin-top:16px;background:var(--plum);color:var(--yellow);font:800 italic 15px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;padding:6px 9px 5px}
+.path h3{font:800 italic 32px/.95 var(--display);text-transform:uppercase;margin:12px 0 6px}
+.path p{margin:0;color:var(--muted);max-width:24ch}
+@media (max-width:820px){
+  .path{grid-template-columns:1fr;gap:22px;padding:0 0 70px}
+  .path::before{left:28px;right:auto;top:30px;bottom:40px;width:12px;height:auto;border-block:0;border-inline:3px solid var(--plum)}
+  .path .key-end{left:-3px;right:auto;top:auto;bottom:-6px;transform:rotate(90deg)}
+  .path li{display:grid;grid-template-columns:68px 1fr;column-gap:18px;align-items:start}
+  .path .badge{grid-row:span 3}
+  .path .when{margin-top:4px;justify-self:start}
+  .path h3{margin-top:8px}
+}
+
+/* faq */
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(24px,5vw,64px);align-items:start}
+.faq details{border:3px solid var(--plum);background:var(--white);margin-bottom:12px}
+.faq summary{cursor:pointer;list-style:none;padding:16px 18px;font-weight:700;font-size:18px;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:800 26px/1 var(--display);color:var(--purple)}
+.faq details[open] summary::after{content:"–"}
+.faq details p{margin:0;padding:0 18px 18px;max-width:58ch}
+@media (max-width:900px){.faq-grid{grid-template-columns:1fr}}
+
+/* closing */
+.closing{background:var(--purple);color:var(--white);border-top:3px solid var(--plum);overflow:hidden}
+.closing-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;padding-block:clamp(56px,7vw,90px)}
+.closing h2{font-size:clamp(54px,7vw,100px)}
+.closing p{max-width:30em}
+.contact{display:grid;gap:8px;margin:24px 0 28px;padding:0;list-style:none}
+.contact li{display:flex;gap:12px;align-items:baseline;font-weight:600}
+.contact span{font:700 13px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#e3d6ff;min-width:74px}
+.tbc{background:var(--yellow);color:var(--plum);padding:2px 8px;font-size:14px;border:2px solid var(--plum)}
+.closing-art{display:flex;justify-content:center;padding:10px 12px 18px 0}
+.closing-panel{position:relative;width:100%;max-width:430px;background:var(--white);border:3px solid var(--plum);box-shadow:8px 8px 0 var(--plum);transform:rotate(-2deg)}
+.closing-panel img{width:100%}
+.closing-panel .bubble{left:auto;top:auto;right:12px;bottom:14px}
+.closing-panel .bubble::after{display:none}
+@media (max-width:860px){.closing-grid{grid-template-columns:1fr}.closing-panel{max-width:360px}}
+
+/* footer */
+.footer{background:var(--plum);color:var(--white);padding-block:34px}
+.footer .wrap{display:flex;flex-wrap:wrap;gap:18px 40px;justify-content:space-between;align-items:center}
+.footer .logo{height:54px;--knock:var(--plum)}
+.footer p{margin:0;font-size:14px;color:#cfc2e6}
+
+/* preview notes */
+.notes{background:var(--white);border-top:3px solid var(--plum)}
+.changes{columns:2 340px;column-gap:40px;margin:0;padding:0;list-style:none;counter-reset:c}
+.changes li{break-inside:avoid;margin-bottom:18px;padding-left:44px;position:relative;counter-increment:c}
+.changes li::before{content:counter(c);position:absolute;left:0;top:0;width:30px;height:30px;display:grid;place-items:center;background:var(--yellow);border:2px solid var(--plum);font:800 italic 17px/1 var(--display)}
+.changes b{display:block}
+.changes .assume{display:inline-block;margin-top:4px;font-size:13px;font-weight:700;color:var(--purple-ink)}
+.logo-system{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px}
+.swatch{border:3px solid var(--plum);display:flex;flex-direction:column}
+.swatch .stage{flex:1;display:grid;place-items:center;padding:28px 18px;min-height:150px}
+.swatch .stage .logo{height:70px;max-width:100%}
+.swatch .label{border-top:3px solid var(--plum);padding:10px 12px;font-size:14px;background:var(--white)}
+.swatch .label b{display:block}
+.swatch .label span{color:var(--muted)}
+.stage.light{background:var(--lilac)}
+.stage.dark{background:var(--plum)}
+.stage.white{background:var(--white)}
+.stage.purple{background:var(--purple)}
+.stage.yellow{background:var(--yellow)}
+.favs{display:flex;align-items:flex-end;gap:18px}
+.favs svg{display:block}
+.glossy{width:100%;max-width:240px}
+@media (max-width:900px){.logo-system{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.logo-system{grid-template-columns:1fr}}
+
+/* dialog */
+dialog{border:3px solid var(--plum);box-shadow:8px 8px 0 var(--plum);padding:0;max-width:560px;width:calc(100% - 32px);background:var(--white);color:var(--plum)}
+dialog::backdrop{background:rgba(36,18,58,.6)}
+.dlg-head{display:flex;justify-content:space-between;align-items:center;background:var(--yellow);border-bottom:3px solid var(--plum);padding:10px 16px}
+.dlg-head p{margin:0;font:800 italic 18px/1 var(--display);text-transform:uppercase}
+.dlg-close{appearance:none;border:0;background:none;font:700 28px/1 var(--sans);cursor:pointer;color:var(--plum)}
+.dlg-body{padding:20px 20px 24px}
+.dlg-body h2{font-size:44px}
+.fields{display:grid;gap:14px;margin-top:18px}
+.fields label{display:grid;gap:6px;font-weight:600;font-size:15px}
+.fields input,.fields select,.fields textarea{font:inherit;font-size:16px;padding:11px 12px;border:2px solid var(--plum);background:var(--lilac);color:var(--plum);border-radius:0}
+.fields textarea{min-height:110px;resize:vertical}
+.sent{margin-top:16px;background:var(--lilac);border:2px solid var(--plum);padding:12px 14px;font-weight:600}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="shield" viewBox="0 0 100 112">
+      <path style="fill:var(--so);stroke:var(--sk);stroke-width:var(--sw);stroke-linejoin:round" d="M14 18H30L36 9H64L70 18H86L93 26V67L50 107L7 67V26Z"/>
+      <path style="fill:var(--si)" d="M21 26H33L38.5 18.5H61.5L67 26H79L84 31.5V63.5L50 95.5L16 63.5V31.5Z"/>
+      <path style="fill:none;stroke:var(--sl);stroke-width:2.2;opacity:var(--ring,0)" d="M21 26H33L38.5 18.5H61.5L67 26H79L84 31.5V63.5L50 95.5L16 63.5V31.5Z"/>
+      <text x="50" y="74" text-anchor="middle" textLength="62" lengthAdjust="spacingAndGlyphs" style="font:italic 800 54px 'Barlow Condensed','Arial Narrow',sans-serif;fill:var(--sl);stroke:var(--sk);stroke-width:var(--sw);paint-order:stroke;stroke-linejoin:round">SW</text>
+    </symbol>
+    <symbol id="lockup" viewBox="0 0 340 112">
+      <use href="#shield" x="0" y="0" width="100" height="112"/>
+      <text x="112" y="56" textLength="150" lengthAdjust="spacingAndGlyphs" style="font:italic 800 60px 'Barlow Condensed','Arial Narrow',sans-serif;fill:var(--wt);stroke:var(--wk);stroke-width:var(--sw);paint-order:stroke;stroke-linejoin:round">SUPER</text>
+      <text x="104" y="104" textLength="226" lengthAdjust="spacingAndGlyphs" style="font:italic 800 60px 'Barlow Condensed','Arial Narrow',sans-serif;fill:var(--wb);stroke:var(--wk);stroke-width:var(--sw);paint-order:stroke;stroke-linejoin:round">WEBSITES</text>
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 19 19 5M7 5h12v12" fill="none" stroke="currentColor" stroke-width="2.6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6" fill="none" stroke="currentColor" stroke-width="3"/></symbol>
+    <symbol id="i-code" viewBox="0 0 160 120"><path d="M14 18h116v80H14z" fill="#fff" stroke="#24123a" stroke-width="4"/><path d="M14 36h116" stroke="#24123a" stroke-width="4"/><path d="m52 54-14 13 14 13m40-26 14 13-14 13M80 50l-14 34" fill="none" stroke="#7b3fe4" stroke-width="5"/><path d="m118 62 28 6-6 34-30-6z" fill="#ffd23a" stroke="#24123a" stroke-width="4"/><path d="m122 78 8 7 10-14" fill="none" stroke="#24123a" stroke-width="4"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 160 120"><path d="M40 92a22 22 0 0 1 2-44 30 30 0 0 1 57-10 24 24 0 0 1 21 54z" fill="#fff" stroke="#24123a" stroke-width="4"/><path d="M66 70h34v22H66z" fill="#ffd23a" stroke="#24123a" stroke-width="4"/><path d="M72 70v-8a11 11 0 0 1 22 0v8" fill="none" stroke="#24123a" stroke-width="4"/><circle cx="83" cy="81" r="3.5" fill="#24123a"/></symbol>
+    <symbol id="i-hand" viewBox="0 0 160 120"><path d="M20 20h80v60H20z" fill="#fff" stroke="#24123a" stroke-width="4"/><path d="M30 36h44v6H30zm0 14h30v6H30z" fill="#7b3fe4"/><path d="m96 58 26-14 22 22-12 38-34-6z" fill="#ffd23a" stroke="#24123a" stroke-width="4"/><path d="m104 72 12 12 20-26" fill="none" stroke="#24123a" stroke-width="4"/></symbol>
+  </defs>
+</svg>
+
+<div id="intro" aria-hidden="true">
+  <div class="half l"><div class="chain"></div></div>
+  <div class="half r"><div class="chain"></div></div>
+  <div class="mark">
+    <img class="logo" src="assets/logo-v1.2.1.webp" width="1000" height="416" alt="">
+    <span class="kicker">No subscriptions</span>
+  </div>
+  <svg class="burst" viewBox="0 0 100 100"><path d="M50 0 57 30 80 8 68 37 100 30 73 50 100 70 68 63 80 92 57 70 50 100 43 70 20 92 32 63 0 70 27 50 0 30 32 37 20 8 43 30Z" fill="#ffd23a" stroke="#24123a" stroke-width="3" stroke-linejoin="round"/></svg>
+  <button class="skip" type="button" id="skipIntro">Skip</button>
+</div>
+
+<div class="ribbon"><div class="wrap"><span><b>Preview v2.</b> A design concept for Patrick and Dave. Not a live site.</span><a href="#changes">See what changed ↓</a></div></div>
+
+<header class="header">
+  <div class="wrap nav">
+    <a href="#top" aria-label="Super Websites home"><img class="logo" src="assets/logo-v1.2.1.webp" width="1000" height="416" alt=""></a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#trap">Why own it</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#work">Our work</a>
+      <a href="#steps">How it works</a>
+      <button class="btn" type="button" data-brief>Start a brief</button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Websites for NZ small businesses</p>
+        <h1 class="display">Super sites.<br><span class="hl">No subscriptions.</span></h1>
+        <p class="lede">We build your website once and hand you the keys. It's hosted free in your name. You only pay us again when you want something changed.</p>
+        <div class="hero-actions">
+          <button class="btn" type="button" data-brief>Build something super <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <a class="textlink" href="#work">See sites we've built</a>
+        </div>
+        <ul class="promises">
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>You own the site</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Hosting in your name</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>From NZ$1,500 + GST</li>
+        </ul>
+      </div>
+      <div class="panel hero-panel">
+        <div class="art">
+          <div class="halftone-bg"></div>
+          <img class="heroine" src="assets/SW-heroine-v4.jpg" width="1136" height="1408" alt="The Super Websites heroine standing with a hand on her hip, holding up a laptop showing a website" fetchpriority="high">
+          <span class="bubble">A superpower for your business</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section" id="trap">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The monthly trap</p>
+        <h2 class="display">Stop paying rent on <em>your own website.</em></h2>
+        <p class="lede">Lots of agencies build your site, then charge a monthly "care plan" to keep it online. Stop paying and the site can go offline. We do it the other way round.</p>
+      </div>
+      <div class="trap-grid">
+        <div class="panel break-panel">
+          <p><span>Break</span><span>the</span><span class="accent">subscription</span><span>cycle.</span></p>
+        </div>
+        <div class="panel cost-card">
+          <h3>Five years of website costs</h3>
+          <p class="sub">After the build. Example agency plan vs. us, even if you change something four times a year.</p>
+          <div class="legend" aria-hidden="true">
+            <span><i style="background:var(--plum)"></i>Agency care plan, NZ$79/month</span>
+            <span><i style="background:var(--yellow)"></i>Super Websites, 4 updates/year</span>
+          </div>
+          <svg class="chart" viewBox="0 0 520 284" role="img" aria-label="Cumulative cost over five years. Example agency plan: NZ$948 after year 1, rising to NZ$4,740 after year 5. Super Websites with four NZ$50 updates a year: NZ$200 after year 1, rising to NZ$1,000 after year 5.">
+            <g stroke="#24123a" stroke-opacity=".14" stroke-width="1">
+              <line x1="44" y1="30" x2="516" y2="30"/><line x1="44" y1="140" x2="516" y2="140"/>
+            </g>
+            <g font-size="12" fill-opacity=".7">
+              <text x="0" y="34">$5k</text><text x="0" y="144">$2.5k</text><text x="0" y="254">$0</text>
+            </g>
+            <g fill="#24123a">
+              <rect x="65" y="208.3" width="32" height="41.7"/><rect x="155" y="166.6" width="32" height="83.4"/><rect x="245" y="124.9" width="32" height="125.1"/><rect x="335" y="83.2" width="32" height="166.8"/><rect x="425" y="41.4" width="32" height="208.6"/>
+            </g>
+            <g fill="#ffd23a" stroke="#24123a" stroke-width="2">
+              <rect x="103" y="241.2" width="32" height="8.8"/><rect x="193" y="232.4" width="32" height="17.6"/><rect x="283" y="223.6" width="32" height="26.4"/><rect x="373" y="214.8" width="32" height="35.2"/><rect x="463" y="206" width="32" height="44"/>
+            </g>
+            <line x1="44" y1="250" x2="516" y2="250" stroke="#24123a" stroke-width="2.5"/>
+            <g font-size="12.5" font-weight="700" text-anchor="middle">
+              <text x="81" y="201">$948</text><text x="171" y="159">$1,896</text><text x="261" y="117">$2,844</text><text x="351" y="76">$3,792</text><text x="441" y="34">$4,740</text>
+              <text x="479" y="199">$1,000</text>
+            </g>
+            <g font-size="12.5" font-weight="600" text-anchor="middle" fill-opacity=".75">
+              <text x="100" y="272">Year 1</text><text x="190" y="272">Year 2</text><text x="280" y="272">Year 3</text><text x="370" y="272">Year 4</text><text x="460" y="272">Year 5</text>
+            </g>
+          </svg>
+          <div class="totals">
+            <div class="total them"><small>Agency plan, 5 years</small><b>NZ$4,740</b></div>
+            <div class="total us"><small>Super Websites, 5 years</small><b>NZ$1,000</b></div>
+          </div>
+        </div>
+      </div>
+      <p class="fine trap-foot">Illustrative. NZ$79/month is an example agency hosting and care plan, inside the NZ$40 to NZ$100 a month NZ agencies commonly charge. It is not a quote from any real business. Super Websites figure assumes four NZ$50 updates a year; if you change nothing, it's NZ$0. Build prices and domain renewals (roughly NZ$30 a year for a .co.nz) are separate on both sides. All prices exclude GST.</p>
+    </div>
+  </section>
+
+  <section class="section dark" id="own">
+    <div class="wrap own-grid">
+      <div>
+        <div class="section-head">
+          <p class="eyebrow">Where your site lives</p>
+          <h2 class="display">Your website. <em>Your keys.</em></h2>
+          <p class="lede">We build it, then hand you everything.</p>
+        </div>
+        <ul class="keylist">
+          <li><b>Your site</b><span>Yours to keep. Any web developer can take it over.</span></li>
+          <li><b>Hosting</b><span>Free, in your name.</span></li>
+          <li><b>Changes</b><span>NZ$50 when you need one. No plan.</span></li>
+        </ul>
+        <p class="fine">Your domain renewal is the only ongoing cost.</p>
+      </div>
+      <figure class="panel keystone-panel" style="margin:0">
+        <div class="art"><img src="assets/SW-keystone-v3.jpg" width="1136" height="1408" loading="lazy" alt="Keystone, a Super Websites hero, holding a shield and jingling a ring of golden keys"></div>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="pricing">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Straight-up pricing</p>
+        <h2 class="display">One price to build. <em>Then it's yours.</em></h2>
+      </div>
+      <div class="prices">
+        <article class="panel price">
+          <p class="tag">Simple and sharp</p>
+          <h3>One-page site</h3>
+          <p class="amount"><sup>NZ$</sup>1,500<small>+ GST</small></p>
+          <ul class="includes">
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>One scrolling page with everything customers need</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Built for phones first</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Contact form that lands in your inbox</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Hosting set up free, in your name</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Linked to your Google Business Profile</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Two rounds of changes before launch</li>
+          </ul>
+          <button class="btn" type="button" data-brief>Start with one page <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        </article>
+        <article class="panel price main">
+          <p class="tag">Most popular</p>
+          <h3>Five-page site</h3>
+          <p class="amount"><sup>NZ$</sup>2,500<small>+ GST</small></p>
+          <p class="plus">Everything in the one-page site, plus:</p>
+          <ul class="includes">
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Up to 5 pages: home, services, about, gallery, contact</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>A page for each service, so you show up on Google for each one</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Google Search set up so you can see what people search to find you</li>
+          </ul>
+          <button class="btn" type="button" data-brief>Plan my five pages <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        </article>
+        <article class="panel price">
+          <p class="tag">After launch</p>
+          <h3>Quick updates</h3>
+          <p class="amount"><sup>NZ$</sup>50<small>+ GST</small></p>
+          <p>Swap text, photos, prices or opening hours. Only when you need it.</p>
+        </article>
+      </div>
+      <p class="fine" style="margin-top:22px">Need bookings, a shop or more than five pages? You get a fixed quote before we start. All prices exclude GST.</p>
+    </div>
+  </section>
+
+  <section class="section halftone" id="work" style="border-block:3px solid var(--plum)">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Real sites, live now</p>
+        <h2 class="display">Built by the <em>same two people.</em></h2>
+        <p class="lede">These are real businesses with real customers. Click through and have a look around.</p>
+      </div>
+      <div class="work-grid">
+        <a class="panel site" href="https://fancast.co.nz" target="_blank" rel="noopener">
+          <div class="chrome"><i></i><i></i><i></i><span>fancast.co.nz</span></div>
+          <img src="assets/work-fancast.jpg" width="644" height="475" loading="lazy" alt="Homepage of fancast.co.nz, a Queenstown video production company">
+          <div class="meta"><h3>FanCast Productions</h3><p>Video production, Queenstown.</p></div>
+        </a>
+        <a class="panel site" href="https://cameracademy.com" target="_blank" rel="noopener">
+          <div class="chrome"><i></i><i></i><i></i><span>cameracademy.com</span></div>
+          <img src="assets/work-cameracademy.jpg" width="644" height="475" loading="lazy" alt="Homepage of cameracademy.com, camera and content classes in Queenstown, Cromwell and Dunedin">
+          <div class="meta"><h3>CamerAcademy</h3><p>Camera and content classes. Queenstown, Cromwell and Dunedin.</p></div>
+        </a>
+        <div class="panel site placeholder">
+          <div><p class="eyebrow" style="justify-content:center">Slot 3</p><h3>Patrick's project</h3><p>Drop a screenshot of one of Patrick's sites here.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="steps">
+    <div class="wrap">
+      <div class="chapters-head section-head" style="max-width:none">
+        <div>
+          <p class="eyebrow">How it works</p>
+          <h2 class="display">Four steps. <em>One super website.</em></h2>
+        </div>
+        <div class="byline"><span class="mono-badge">P+D</span><div><strong>Patrick &amp; Dave</strong>You deal with us, start to finish.</div></div>
+      </div>
+      <ol class="path">
+        <li><svg class="badge" viewBox="0 0 100 112" aria-hidden="true"><path d="M14 18H30L36 9H64L70 18H86L93 26V67L50 107L7 67V26Z" fill="#7b3fe4" stroke="#24123a" stroke-width="5" stroke-linejoin="round"/><text x="50" y="72" text-anchor="middle">1</text></svg><span class="when">Day 1</span><h3>The mission</h3><p>A 30-minute chat about your business and customers.</p></li>
+        <li><svg class="badge" viewBox="0 0 100 112" aria-hidden="true"><path d="M14 18H30L36 9H64L70 18H86L93 26V67L50 107L7 67V26Z" fill="#7b3fe4" stroke="#24123a" stroke-width="5" stroke-linejoin="round"/><text x="50" y="72" text-anchor="middle">2</text></svg><span class="when">Day 2</span><h3>The plan</h3><p>A fixed price and scope, in writing.</p></li>
+        <li><svg class="badge" viewBox="0 0 100 112" aria-hidden="true"><path d="M14 18H30L36 9H64L70 18H86L93 26V67L50 107L7 67V26Z" fill="#7b3fe4" stroke="#24123a" stroke-width="5" stroke-linejoin="round"/><text x="50" y="72" text-anchor="middle">3</text></svg><span class="when">Weeks 1-2</span><h3>The build</h3><p>We design, you review as we go.</p></li>
+        <li><svg class="badge" viewBox="0 0 100 112" aria-hidden="true"><path d="M14 18H30L36 9H64L70 18H86L93 26V67L50 107L7 67V26Z" fill="#7b3fe4" stroke="#24123a" stroke-width="5" stroke-linejoin="round"/><text x="50" y="72" text-anchor="middle">4</text></svg><span class="when">Week 3</span><h3>The launch</h3><p>Your site goes live. You get the keys.</p></li>
+        <svg class="key-end" viewBox="0 0 64 60" aria-hidden="true"><circle cx="18" cy="30" r="14" fill="#ffd23a" stroke="currentColor" stroke-width="4"/><circle cx="18" cy="30" r="5" fill="#f4eefe" stroke="currentColor" stroke-width="3"/><path d="M31 26h29v8h-6v8h-7v-8h-5v6h-6v-6h-5z" fill="#ffd23a" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/></svg>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section faq" id="faq" style="padding-top:0">
+    <div class="wrap faq-grid">
+      <div class="section-head">
+        <p class="eyebrow">Good questions</p>
+        <h2 class="display">Straight <em>answers.</em></h2>
+      </div>
+      <div>
+        <details open><summary>What's the catch?</summary><p>There isn't a monthly one. You pay for the build, and your site is hosted free, in an account in your name. Your domain renewal is the only ongoing cost, and it's paid to your registrar, not us.</p></details>
+        <details><summary>What happens if you two disappear?</summary><p>Your site keeps running. The website files, the hosting account and the domain are all yours, so any web developer can take over without asking us for anything.</p></details>
+        <details><summary>Can I edit the site myself?</summary><p>Not with a drag-and-drop editor. That's the trade-off for free, fast hosting. Most owners change things a few times a year, and at NZ$50 a change that still costs far less than a monthly platform.</p></details>
+        <details><summary>Can I keep my current domain and email?</summary><p>Yes. We check your domain and email setup first and make sure nothing breaks when the new site goes live.</p></details>
+        <details><summary>What about bookings or an online shop?</summary><p>We scope those separately and give you a fixed quote. Booking and shop tools often have their own monthly fees, and we tell you exactly what they are before you decide.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="wrap closing-grid">
+      <div>
+        <p class="eyebrow">Your next chapter</p>
+        <h2 class="display">Look super.<br>Stay in control.</h2>
+        <p>Tell us about your business and we'll come back with a scope and a fixed price.</p>
+        <ul class="contact">
+          <li><span>Email</span><b class="tbc">Email TBC</b></li>
+          <li><span>Phone</span><b class="tbc">Phone TBC</b></li>
+          <li><span>Based in</span><b class="tbc">Location TBC</b></li>
+        </ul>
+        <button class="btn yellow" type="button" data-brief>Start your website brief <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      </div>
+      <div class="closing-art">
+        <div class="closing-panel">
+          <img src="assets/SW-hero-v4.jpg" width="1136" height="1408" loading="lazy" alt="The Super Websites hero standing tall, holding up a golden key">
+          <span class="bubble">Your business. Supercharged.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <img class="logo" src="assets/logo-v1.2.1.webp" width="1000" height="416" alt="Super Websites">
+    <p>© 2026 Super Websites · Design concept v2</p>
+  </div>
+</footer>
+
+<section class="section notes" id="changes">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Preview notes</p>
+      <h2 class="display">What changed <em>in v2.</em></h2>
+    </div>
+    <ol class="changes">
+      <li><b>Glossy logo on the site, flat logo for print.</b>The header, footer and opening animation use the original glossy logo. The flat two-colour and one-colour versions below are for signage, shirts, invoices and anything tiny.<span class="assume">The flat versions were rebuilt by eye and need a proper designer pass before print.</span></li>
+      <li><b>One visual style.</b>The layout uses a comic-panel look: thick plum outlines and hard offset shadows. No dots behind the heroes. The minimal studio-template look is gone.</li>
+      <li><b>Type leans forward.</b>Headlines are Barlow Condensed ExtraBold Italic, so they match the logo's slant and the heroes' motion.</li>
+      <li><b>New comparison.</b>Agency care plan vs. us, instead of Wix at NZ$30/month. The five-year gap is NZ$4,740 vs NZ$1,000 instead of NZ$1,800 vs NZ$1,500.<span class="assume">NZ$79/month is an example from the middle of the NZ$40 to NZ$100 range NZ agencies charge for care plans.</span></li>
+      <li><b>Hosting explained.</b>New "Your keys" section and FAQ say where the site lives and what happens if you disappear.<span class="assume">Assumes free hosting in an account the client owns. Confirm with Patrick.</span></li>
+      <li><b>"No subscription" said once.</b>The ticker and most of the repeats are gone. The claim appears in the hero and the trap section, with one honest footnote.</li>
+      <li><b>Two clear build prices.</b>One-page site NZ$1,500 and five-page site NZ$2,500, both + GST, each with an inclusions list. Bigger jobs get a fixed quote.<span class="assume">Inclusions are a draft. Agree them with Patrick.</span></li>
+      <li><b>Real work replaces the concepts.</b>fancast.co.nz and cameracademy.com, plus a slot for one of Patrick's sites.</li>
+      <li><b>Contact details.</b>Email, phone and location now have a place on the page.<span class="assume">Marked TBC until you two decide.</span></li>
+      <li><b>Readable fine print.</b>Nothing on the page is smaller than 13px. Short intro paragraphs now sit under their headings, not floating off to the right.</li>
+      <li><b>No fade-in from blank.</b>Every section is visible on load. The cost chart shows its totals straight away.</li>
+      <li><b>Heroes in a middle style.</b>Between the original glossy muscle-heroes and the flat friendly ones: glossy comic shading, athletic but natural builds, no masks, gloves, boots and silver trim back. Plain backgrounds behind them, no dots, no caption banners. Faces stay friendly and readable.</li>
+      <li><b>Simpler steps and keys.</b>The four comic chapter images are gone; "How it works" is now a path: four shield badges joined by a yellow line that ends in a key, each step with a timing.<span class="assume">Day 1 / Day 2 / Weeks 1-2 / Week 3 are placeholders. Agree real timings with Patrick.</span> "Your keys" is cut to three one-line points, with Keystone from the hero lineup as its guardian.</li>
+      <li><b>Yellow buttons and a chain-break opening.</b>Every button is now yellow. On first visit, a chain across the screen strains and snaps and the two halves pull apart to reveal the page. It works like the CamerAcademy title sequence: about 2 seconds, Skip button, once per visit, and off for anyone with reduced motion turned on.</li>
+      <li><b>Share previews.</b>Added Open Graph tags so links show a title, description and image on Facebook and WhatsApp.</li>
+    </ol>
+
+    <div class="section-head" style="margin-top:56px;margin-bottom:0">
+      <p class="eyebrow">Logo system</p>
+      <h2 class="display" style="font-size:clamp(38px,4.6vw,60px)">Six ways to use it.</h2>
+      <p class="lede">The glossy logo stays for screens and video. Everything printed, stitched or tiny uses the flat versions.</p>
+    </div>
+    <div class="logo-system">
+      <div class="swatch"><div class="stage white"><img class="glossy" src="assets/logo-v1.2.1.webp" width="1000" height="416" alt="Original glossy Super Websites logo"></div><div class="label"><b>Glossy (original)</b><span>Screens, video, social avatars</span></div></div>
+      <div class="swatch"><div class="stage light"><svg class="logo" viewBox="0 0 340 112" role="img" aria-label="Flat full-colour logo"><use href="#lockup"/></svg></div><div class="label"><b>Flat, full colour</b><span>Website header, invoices, signage</span></div></div>
+      <div class="swatch"><div class="stage dark"><svg class="logo on-dark" viewBox="0 0 340 112" role="img" aria-label="Flat logo for dark backgrounds"><use href="#lockup"/></svg></div><div class="label"><b>Flat, on dark</b><span>Dark shirts, van panels, footers</span></div></div>
+      <div class="swatch"><div class="stage white" style="color:var(--plum)"><svg class="logo mono" viewBox="0 0 340 112" role="img" aria-label="One-colour plum logo" style="--knock:var(--white)"><use href="#lockup"/></svg></div><div class="label"><b>One colour, plum</b><span>Black-and-white print, stamps, receipts</span></div></div>
+      <div class="swatch"><div class="stage purple" style="color:var(--white)"><svg class="logo mono" viewBox="0 0 340 112" role="img" aria-label="One-colour white logo" style="--knock:var(--purple)"><use href="#lockup"/></svg></div><div class="label"><b>One colour, white</b><span>Embroidery, vinyl, photos</span></div></div>
+      <div class="swatch"><div class="stage yellow"><div class="favs" aria-label="Shield at 64, 32 and 16 pixels" role="img"><svg class="logo" width="64" height="72" viewBox="0 0 100 112" style="height:72px"><use href="#shield"/></svg><svg class="logo" width="32" height="36" viewBox="0 0 100 112" style="height:36px"><use href="#shield"/></svg><svg class="logo" width="16" height="18" viewBox="0 0 100 112" style="height:18px"><use href="#shield"/></svg></div></div><div class="label"><b>Shield alone</b><span>Favicon, app icon, stickers</span></div></div>
+    </div>
+  </div>
+</section>
+
+<dialog id="brief" aria-labelledby="brief-title">
+  <div class="dlg-head"><p>Your mission starts here</p><button class="dlg-close" type="button" aria-label="Close">×</button></div>
+  <div class="dlg-body">
+    <h2 class="display" id="brief-title">Tell us your superpower.</h2>
+    <form id="brief-form">
+      <div class="fields">
+        <label for="f-business">Business name<input id="f-business" name="business" required maxlength="100" placeholder="Your business"></label>
+        <label for="f-type">What do you need?<select id="f-type" name="type"><option>A new website</option><option>A refresh of my current site</option><option>A site with bookings or a shop</option><option>Not sure yet</option></select></label>
+        <label for="f-site">Current website, if you have one<input id="f-site" name="site" maxlength="200" placeholder="example.co.nz"></label>
+        <label for="f-goal">What should the website help you do?<textarea id="f-goal" name="goal" required maxlength="1500" placeholder="More bookings, more calls, look more established..."></textarea></label>
+      </div>
+      <div style="margin-top:18px"><button class="btn" type="submit">Send my brief <svg aria-hidden="true"><use href="#i-arrow"/></svg></button></div>
+      <p class="sent" id="sent" hidden>Preview only, so nothing was sent. On the live site this goes straight to Patrick and Dave's inbox.</p>
+    </form>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  var intro=document.getElementById('intro');
+  if(!intro) return;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* once per visit, like the CamerAcademy title sequence; storage can throw in private windows */
+  var seen=false;
+  try{ seen=!!sessionStorage.getItem('sw-intro-seen'); }catch(e){}
+  if(reduce||seen){ intro.remove(); return; }
+  try{ sessionStorage.setItem('sw-intro-seen','1'); }catch(e){}
+  document.body.classList.add('intro-lock');
+  function finish(){
+    if(!intro) return;
+    intro.classList.add('done');
+    document.body.classList.remove('intro-lock');
+    var el=intro; intro=null;
+    setTimeout(function(){ el.remove(); },300);
+  }
+  var timer=setTimeout(finish,2150);
+  intro.addEventListener('click',function(){ clearTimeout(timer); finish(); });
+})();
+</script>
+
+<script>
+(function(){
+  var dlg=document.getElementById('brief');
+  document.querySelectorAll('[data-brief]').forEach(function(b){
+    b.addEventListener('click',function(){ if(dlg.showModal){dlg.showModal();} else {dlg.setAttribute('open','');} });
+  });
+  dlg.querySelector('.dlg-close').addEventListener('click',function(){dlg.close();});
+  dlg.addEventListener('click',function(e){ if(e.target===dlg) dlg.close(); });
+  document.getElementById('brief-form').addEventListener('submit',function(e){
+    e.preventDefault();
+    document.getElementById('sent').hidden=false;
+  });
+})();
+</script>
+</body>
+</html>
