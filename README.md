@@ -19,7 +19,7 @@ Not a live site. Pricing, timings, inclusions and contact details are placeholde
 - Keep version numbers and code version notes current for website changes. This README-only handover is notes v1.0.0 and does not change the website's version.
 - When handing over, append a dated note with assistant name, task/branch, files changed, checks performed, unfinished items and decisions needed. Preserve existing notes and clearly mark proposals.
 - Keep unagreed prices, inclusions, delivery times, hosting assumptions and client claims labelled as proposals. Do not make commitments on behalf of Patrick or Dave.
-- Super Websites uses this GitHub account. Think Blue Tree uses the separate TBT-APP account.
+- Super Websites uses this GitHub account.
 
 ### Codex review — 2026-10-14
 
